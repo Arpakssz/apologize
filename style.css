@@ -1,0 +1,307 @@
+/* CSS Variables for Pantone Green & White Theme */
+:root {
+    --primary-green: #009E60; 
+    --primary-green-hover: #007f4d;
+    --text-dark: #121212;
+    --text-gray-harmonized: #3A4A43; 
+    --accent-white: #ffffff;
+    --bg-tint: #f1f8f4;
+    --font-serif: 'Lora', serif;
+    --font-sans: 'Inter', sans-serif;
+    --shadow-subtle: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-tint);
+    /* --- ACTION REQUIRED: Replace 'assets/your_local_background_image.png' with your file path! --- */
+    /* Background image overlay set to 0.25 opacity */
+    background-image: 
+        linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(240,253,244,0.25) 100%),
+        url('assets/your_local_background_image.jpg');
+    /* ------------------------------------------------------------------------------------------------- */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    padding: 1rem;
+    overflow-x: hidden;
+}
+
+/* Decorative "Greenery" elements */
+.leaf-decor {
+    position: fixed;
+    color: var(--primary-green);
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+    animation: slowRotate 180s linear infinite; 
+}
+.leaf-1 { top: -8%; left: -8%; font-size: 22rem; transform: rotate(45deg); }
+.leaf-2 { bottom: -8%; right: -8%; font-size: 20rem; transform: rotate(-135deg); }
+
+@keyframes slowRotate {
+    from { transform: rotate(0deg) scale(1.0); }
+    to { transform: rotate(360deg) scale(1.01); }
+}
+
+/* Main Heading */
+.main-title {
+    font-family: var(--font-serif);
+    font-size: 2.8rem;
+    color: var(--primary-green);
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 8px rgba(0,158,96,0.15);
+}
+
+.title-icon {
+    color: var(--primary-green);
+    font-size: 0.7em;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+/* The Card - NOW 70% OPAQUE */
+.card {
+    background: rgba(255, 255, 255, 0.7); /* 70% opaque white */
+    width: 100%;
+    max-width: 600px;
+    min-height: 380px;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 158, 96, 0.15), 0 8px 15px rgba(0, 0, 0, 0.05); 
+    border: 1px solid rgba(0, 158, 96, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+/* Subtle Green Border Effect */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px solid var(--primary-green);
+    border-radius: 24px;
+    opacity: 0.1; 
+    pointer-events: none;
+}
+
+/* Content Styling */
+.content-question {
+    font-family: var(--font-serif);
+    font-size: 1.5rem; 
+    color: var(--text-dark);
+    margin-bottom: 1.8rem;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+/* Container for Answer + Image */
+.reveal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+    /* Setup for slide-down transition */
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(15px);
+    overflow: hidden; 
+    transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                max-height 0.8s ease-out;
+}
+
+.reveal-content.visible {
+    opacity: 1;
+    /* Enough height to contain the image and text */
+    max-height: 400px; 
+    transform: translateY(0);
+}
+
+.content-answer {
+    font-family: var(--font-serif);
+    font-size: 1.35rem; 
+    color: var(--primary-green);
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* Joke Image Styling */
+.answer-image {
+    max-width: 60%; /* Smaller width for better balance */
+    height: auto;
+    border-radius: 12px;
+    
+    /* border: 2px solid var(--bg-tint); <-- Removed border */
+}
+
+/* Icons for transition slides (fallback/old) */
+.transition-icon {
+    font-size: 3.5rem;
+    color: var(--primary-green);
+    margin-bottom: 2rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* NEW Image Styles for Message/Transition Slides */
+/* Style for the first image (index 0) - round */
+.intro-image {
+    max-width: 50%; 
+    height: auto;
+    margin-bottom: 2rem; 
+    border-radius: 50%; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border: 4px solid var(--primary-green); 
+    animation: float 4s ease-in-out infinite; 
+}
+/* Style for subsequent message images - CIRCULAR */
+.message-image {
+    max-width: 50%; 
+    height: auto;
+    margin-bottom: 2rem; 
+    border-radius: 50%; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 4px solid var(--primary-green); 
+    animation: float 4s ease-in-out infinite; 
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.02); }
+}
+
+/* Button Styling - Title Case text */
+.btn {
+    background-color: var(--primary-green);
+    color: var(--accent-white);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 16px rgba(0, 158, 96, 0.35);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    letter-spacing: 0.02em; 
+    text-transform: capitalize; 
+}
+
+.btn:hover {
+    background-color: var(--primary-green-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 158, 96, 0.45);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-subtle);
+}
+
+/* The Final Letter Styling */
+.letter-container {
+    text-align: left;
+    padding: 1rem 0;
+    position: relative;
+    max-width: 100%;
+}
+
+.letter-decor {
+    position: absolute;
+    color: var(--primary-green);
+    opacity: 0.15;
+    font-size: 3rem;
+    text-shadow: 0 0 5px rgba(0,158,96,0.1); 
+}
+.decor-tl { top: -20px; left: -20px; transform: rotate(-45deg); }
+.decor-br { bottom: -20px; right: -20px; transform: rotate(135deg); }
+
+.letter-greeting {
+    color: var(--primary-green);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 2px solid rgba(0,158,96,0.15);
+    padding-bottom: 1rem;
+    font-weight: 500;
+}
+
+.letter-body {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 2;
+    color: var(--text-gray-harmonized);
+    margin-bottom: 1.8rem;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.01);
+    letter-spacing: 0.01em;
+}
+
+.letter-signoff {
+    text-align: right;
+    font-family: var(--font-serif);
+    margin-top: 3rem;
+    color: var(--primary-green);
+}
+
+.signoff-text {
+    display: block;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-gray-harmonized);
+    margin-bottom: 0.7rem;
+}
+
+.signoff-signature {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 640px) {
+    .main-title { font-size: 2.2rem; margin-bottom: 1.5rem; }
+    .card { padding: 2rem 1.2rem; min-height: 320px; }
+    .content-question { font-size: 1.3rem; margin-bottom: 1.5rem; }
+    .content-answer { font-size: 1.2rem; }
+    .leaf-decor { display: none; }
+    .letter-body { font-size: 1.05rem; line-height: 1.8; }
+}
